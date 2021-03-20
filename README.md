@@ -13,7 +13,7 @@ scrapy crawl rooms
 ```
 La salida esta dada en el archivo items.csv
 
-Para especificar una fecha especifica de viaje a partir del siguiente comando, las fechas se especifican en formato iso 8601.
+Para especificar una fecha especifica de viaje a partir del siguiente comando, las fechas se especifican en formato iso 8601.La opción sday permite seleccionar un solo día de estadía sin la necesidad de colocar una fecha de checkout
 ```
-scrapy crawl rooms2 -a checkin=date_checkin -a checkout=date_checkout 
+scrapy crawl rooms2 -a checkin=date_checkin -a checkout=date_checkout [-a sday=[True|False]]
 ```

@@ -4,6 +4,9 @@ __pycache__/
 *$py.class
 # experimental modules
 test.py
+
+#ouput data 
+*.csv
 # C extensions
 *.so
 
