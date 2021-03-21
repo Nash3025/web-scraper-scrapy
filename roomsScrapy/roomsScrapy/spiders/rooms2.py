@@ -2,6 +2,7 @@ import scrapy
 import pathlib
 import datetime
 
+
 class RoomsSpider(scrapy.Spider):
     name = 'rooms2'
 
@@ -9,7 +10,7 @@ class RoomsSpider(scrapy.Spider):
         'airbnb.com.co'
     ]
     custom_settings = {'FEEDS': {
-        pathlib.Path(f'items2.csv'): {
+        pathlib.Path('%(checkin)s.csv'): {
             'format': 'csv',
             'encoding': 'utf-8',
             'overwrite': True
@@ -21,9 +22,9 @@ class RoomsSpider(scrapy.Spider):
         adults = getattr(self, 'adults', None) or 2
         one_day = eval(getattr(self, 'sday', 'False'))
         if one_day:
-            new_checkout = datetime.date.fromisoformat(self.checkin) + datetime.timedelta(days=1)
+            new_checkout = datetime.date.fromisoformat(
+                self.checkin) + datetime.timedelta(days=1)
             self.checkout = new_checkout.isoformat()
-            
 
         yield scrapy.Request(f'https://www.airbnb.com.co/s/Cartagena-~-Bol%C3%ADvar--Colombia/homes?place_id=ChIJUROdrucl9o4RyiY_Ay45YbE&checkin={self.checkin}&checkout={self.checkout}&adults={adults}',
                              callback=self.parse)
